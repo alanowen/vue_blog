@@ -1,0 +1,64 @@
+@import "variables.styl"
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height 100%;
+}
+
+body {
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: $content-color;
+}
+
+a {
+    color: hsla(0,0%,100%,.7);
+    &:link {
+        text-decoration:none;
+    }
+} 
+
+body {
+    font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+    font-size: 12px;
+    
+    .container {
+        display flex;
+        justify-content: space-between;
+        height 100%;
+
+        .side-column {
+            order: 0;
+            height 100%;
+            width: $side-column-width;
+            flex-shrink: 0;
+            border-right: 1px solid $border-color;
+
+            nav {
+                height: 100%;
+            }
+
+            nav[id=post-category-list] {
+                background-color: $content-color;
+                width: $post-category-list-width;
+                float: left;
+            }
+
+            nav[id=post-list] {
+                //left: $post-category-list-width;
+                width: $side-column-width - $post-category-list-width;
+                background-color: $background-color;
+                float: left;
+            }
+        }
+        
+        .main-content {
+            width: 100%;
+            background-color: $background-color;
+            order: 1;
+        }
+    }
+}
