@@ -4,7 +4,8 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "dev": "webpack-dev-server --content-base ./dist --history-api-fallback --open --inline --hot --config ./webpack.config.js --mode=development"
+    "dev": "webpack-dev-server --content-base ./dist --history-api-fallback --open --inline --hot --config ./webpack.config.js --mode=development",
+    "prod": "webpack --config ./webpack.config.js --mode=production"
   },
   "author": "",
   "license": "ISC",
