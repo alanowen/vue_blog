@@ -14,6 +14,7 @@ let ajax = axios.create({
     paramsSerializer: function (params) {
         return JSON.parse(JSON.stringify(params))
     },
+    headers: { 'Access-Control-Allow-Origin': '*' },
     onDownloadProgress: function (progressEvent) {
         //let percentCompleted = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
     }
