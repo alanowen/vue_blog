@@ -5,7 +5,7 @@
 
 
 <script>
-import { maptState, mapState } from 'vuex'
+import { maptState, mapState } from 'vuex';
 
 export default {
     data() {
@@ -42,10 +42,6 @@ export default {
 
 <style lang="stylus" scoped>
 .post {
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
-    padding: 40px;
-    box-sizing: border-box;
+    line-height: 1.5;
 }
 </style>

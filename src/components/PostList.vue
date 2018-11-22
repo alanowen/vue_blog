@@ -33,17 +33,9 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../assets/style/variables.styl'
-
-a {
-    color: $sub-color;
-    &:link {
-        text-decoration:none;
-    }
-}
+@import '../assets/style/variables.styl';
 
 ul {
-    font-size: 12px;
     margin: 0px;
     padding: 0px;
     height: 100%;

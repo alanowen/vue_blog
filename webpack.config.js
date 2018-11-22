@@ -36,7 +36,8 @@ module.exports = (env, argv) => {
                         {
                             loader: 'vue-loader'
                         }
-                    ]
+                    ],
+                    exclude: /node_modules/
                 },
                 { 
                     test: /\.js$/, 
@@ -45,7 +46,7 @@ module.exports = (env, argv) => {
                             loader: 'babel-loader',
                         }
                     ],
-                    // exclude: /node_modules/
+                    exclude: /node_modules/
                 },
                 { test: /\.css$/, use: ['style-loader', 'css-loader'] },
                 { test: /\.styl$/, use: ['style-loader', 'css-loader', 'stylus-loader'] },
@@ -70,6 +71,8 @@ module.exports = (env, argv) => {
                 '@libs': path.resolve(__dirname, './src/libs'),
                 '@components': path.resolve(__dirname, './src/components'),
                 '@assets': path.resolve(__dirname, './src/assets'),
+                '@@config': path.resolve(__dirname, './src/config/config.js'),
+                '@@env': path.resolve(__dirname, './src/config/env.js')
             }
         }
     }

@@ -40,7 +40,7 @@ export default {
 
 
 <style lang="stylus" scoped>
-@import '../assets/style/variables.styl'
+@import '../assets/style/variables.styl';
 
 .loading-bar {
     width: 100%;

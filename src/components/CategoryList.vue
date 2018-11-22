@@ -34,7 +34,7 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-@import '../assets/style/variables.styl'
+@import '../assets/style/variables.styl';
 
 ul {
     font-size: 14px;
@@ -46,18 +46,15 @@ ul {
         padding: 14px 24px;
         cursor: pointer;
 
-        &:hover {
-            background: #363e4f;
-            a {
-                color: $background-color;
-            }
+        a {
+            color: hsla(0,0%,100%,.7);
         }
 
-        &.active {
+        &:hover, &.active {
+            background: #363e4f;
             a {
                 color: $background-color;
             }
-            background: #363e4f;
         }
     }
 }
