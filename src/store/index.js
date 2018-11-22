@@ -11,21 +11,13 @@ export default new Vuex.Store({
             {
                 name: '全部文章',
                 id: 0
-            },
-            {
-                name: '技术',
-                id: 1
-            },
-            {
-                name: '生活',
-                id: 2
             }
         ],
 
         posts: [],
 
         post: {
-            html_ody: null,
+            body_html: null,
             id: null,
             title: null
         }
