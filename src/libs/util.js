@@ -6,7 +6,7 @@ let util = {
 }
 
 
-const ajaxUrl = env === 'development' ? 'http://127.0.0.1:5000' : 'http://127.0.0.1:5000'
+const ajaxUrl = env === 'development' ? 'http://127.0.0.1:5000' : 'http://web:5000'
 
 
 let ajax = axios.create({
@@ -15,7 +15,7 @@ let ajax = axios.create({
         return JSON.parse(JSON.stringify(params))
     },
     onDownloadProgress: function (progressEvent) {
-        let percentCompleted = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
+        //let percentCompleted = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
     }
 })
 
