@@ -1,12 +1,13 @@
 import axios from 'axios'
 import env from '../config/env'
+import config from '../config/config'
 
 let util = {
 
 }
 
 
-const ajaxUrl = env === 'development' ? 'http://127.0.0.1:5000' : 'http://127.0.0.1:5000'
+const ajaxUrl = env === 'development' ? 'http://127.0.0.1:5000' : config.apiServer
 
 
 let ajax = axios.create({
@@ -14,7 +15,6 @@ let ajax = axios.create({
     paramsSerializer: function (params) {
         return JSON.parse(JSON.stringify(params))
     },
-    headers: { 'Access-Control-Allow-Origin': '*', 'Access-Control-Allow-Methods': 'GET,POST,OPTIONS' },
     onDownloadProgress: function (progressEvent) {
         //let percentCompleted = Math.floor((progressEvent.loaded * 100) / progressEvent.total)
     }
