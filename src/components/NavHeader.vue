@@ -1,7 +1,7 @@
 <template>
     <header class="nav-header">
-        <a class="left" v-on:click="clickMenu"><ion-icon name="menu"></ion-icon></a>
-        <a class="right" v-on:click="click"><ion-icon v-bind:name="`arrow-${$route.name == 'post' ? 'back': 'forward'}`"></ion-icon></a>
+        <a class="left" v-on:click="clickMenu"><i class="icon ion-md-menu"></i></a>
+        <a class="right" v-on:click="click"><i :class="`icon ion-md-arrow-${$route.name == 'post' ? 'back': 'forward'}`"></i></a>
     </header>
 </template>
 
@@ -42,9 +42,7 @@ export default {
         top: 19px;
         display: inline-block;
         border-radius: 0;
-        // &:hover {
-        //     box-shadow: 0 0 0 3px rgba(125, 139, 153, 0.15);
-        // }
+
         &.left {
             float: left;
             left: 15px;
@@ -59,7 +57,7 @@ export default {
         display: block;
     }
 
-    ion-icon {
+    i {
         font-size: 22px;
     }
 }

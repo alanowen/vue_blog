@@ -55,7 +55,7 @@ module.exports = (env, argv) => {
                 },
                 { test: /\.css$/, use: [ devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader'] },
                 { test: /\.(styl)|(stylus)$/, use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader'] },
-                { test: /\.(png)|(jpg)|(gif)|(woff)|(svg)|(eot)|(ttf)$/, use: 'file-loader' }
+                { test: /\.(png)|(jpg)|(gif)|(woff)|(svg)|(eot)|(ttf)$/, use: 'url-loader' }
             ]
         },
 

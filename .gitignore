@@ -3,3 +3,4 @@ dist/
 *.swp
 pack/
 .vscode/
+src/config/env.js

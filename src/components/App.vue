@@ -21,6 +21,7 @@
 
 <script>
 import 'animate.css/animate.min.css'
+import 'ionicons/dist/css/ionicons.min.css'
 
 import '@assets/style/base.styl'
 
@@ -55,6 +56,7 @@ export default {
     },
 
     mounted() {
+        this.onResize()
         this.$store.dispatch('getCategoryList')
     },
 

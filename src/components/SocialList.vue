@@ -1,8 +1,8 @@
 <template>
     <div class="social">
-        <a class="social-btn left" href="javascript:void(0)" v-on:click="openNewTab(config.social.github)"><ion-icon name="logo-github"></ion-icon></a>
-        <a class="social-btn right" :href="'mailto:' + config.social.email"><ion-icon name="mail"></ion-icon></a>
-        <a class="social-btn left"><ion-icon name="logo-rss"></ion-icon></a>
+        <a class="social-btn left" href="javascript:void(0)" v-on:click="openNewTab(config.social.github)"><i class="icon ion-logo-github"></i></a>
+        <a class="social-btn right" :href="'mailto:' + config.social.email"><i class="icon ion-md-mail"></i></a>
+        <a class="social-btn left"><i class="icon ion-logo-rss"></i></a>
     </div>
 </template>
 
@@ -35,10 +35,9 @@ export default {
 
     a {
         color: hsla(0,0%,100%,.7);
-    }
-
-    ion-icon {
-        font-size: 20px;
+        i {
+            font-size: 20px;
+        }
     }
 
     & a:hover {
