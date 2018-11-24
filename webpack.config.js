@@ -2,15 +2,20 @@ const path = require('path')
 const process = require('process')
 const fs = require('fs')
 
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin")
+
+const webpack = require('webpack')
 
 module.exports = (env, argv) => {
 
+    const devMode = argv.mode === 'development'
+
     fs.open('./src/config/env.js', 'w', function(err, fd) {
         let buf = 'export default "development";'
-        if (argv.mode == "production") {
+        if (!devMode) {
             buf = 'export default "production";'
         }
         fs.write(fd, buf, 0, buf.length, function(err, written, buffer) {})
@@ -20,12 +25,12 @@ module.exports = (env, argv) => {
     let config = {
         entry: {
             main: path.resolve(__dirname, './src/main.js'),
-            vendor: path.resolve(__dirname, './src/vendor.js')
+            vendors: path.resolve(__dirname, './src/vendors.js')
         },
 
         output: {
             path: path.resolve(__dirname, './dist'),
-            filename: argv.mode == 'production' ? '[name].[hash].js' : '[name].js'
+            filename: !devMode ? '[name].[hash].js' : '[name].js'
         },
 
         module: {
@@ -48,19 +53,28 @@ module.exports = (env, argv) => {
                     ],
                     exclude: /node_modules/
                 },
-                { test: /\.css$/, use: ['style-loader', 'css-loader'] },
-                { test: /\.styl$/, use: ['style-loader', 'css-loader', 'stylus-loader'] },
-                { test: /\.stylus$/, use: ['style-loader', 'css-loader', 'stylus-loader'] },
+                { test: /\.css$/, use: [ devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader'] },
+                { test: /\.(styl)|(stylus)$/, use: [devMode ? 'style-loader' : MiniCssExtractPlugin.loader, 'css-loader', 'stylus-loader'] },
                 { test: /\.(png)|(jpg)|(gif)|(woff)|(svg)|(eot)|(ttf)$/, use: 'file-loader' }
             ]
         },
 
         plugins: [
+
+            new CleanWebpackPlugin(['dist']),
+
             new VueLoaderPlugin(),
+
+            new MiniCssExtractPlugin(
+                {
+                    filename: devMode ? '[name].css' : '[name].[hash].css',
+                    chunkFilename: devMode ? '[id].css' : '[id].[hash].css',
+                }
+            ),
 
             new HtmlWebpackPlugin({
                 filename: 'index.html',
-                chunks: ['main', 'vendor'],
+                chunks: ['main', 'vendors'],
                 template: path.resolve(__dirname, './src/assets/templates/index.html')
             })
         ],
@@ -77,11 +91,15 @@ module.exports = (env, argv) => {
         }
     }
 
-    if (argv.mode == "development") {
-        config['plugins'].push(new webpack.SourceMapDevToolPlugin({
-            filename: '[name].js.map',
-            exclude: ['vendor.js']
-        }))
+    if (devMode) {
+        config['plugins'].push(
+            new webpack.EvalSourceMapDevToolPlugin(
+                {
+                    filename: '[name].js.map',
+                    exclude: ['vendors.js']
+                }
+            )
+        )
     }
 
     return config
