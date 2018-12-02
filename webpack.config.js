@@ -85,6 +85,7 @@ module.exports = (env, argv) => {
                 '@libs': path.resolve(__dirname, './src/libs'),
                 '@components': path.resolve(__dirname, './src/components'),
                 '@assets': path.resolve(__dirname, './src/assets'),
+                '@plugins': path.resolve(__dirname, './src/plugins'),
                 '@@config': path.resolve(__dirname, './src/config/config.js'),
                 '@@env': path.resolve(__dirname, './src/config/env.js')
             },

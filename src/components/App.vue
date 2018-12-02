@@ -2,7 +2,6 @@
     <div class="column-container">
         <nav-header v-if="showHeader"></nav-header>
         <div class="row-container">
-            <!-- <loading-bar ref="loadingBar" :percent="40"></loading-bar> -->
             <aside class="side-column">
                 <nav id="post-category-list">
                     <category-list></category-list>
@@ -27,7 +26,6 @@ import '@assets/style/base.styl'
 
 import CategoryList from './CategoryList.vue'
 import PostList from './PostList.vue'
-import LoadingBar from './LoadingBar.vue'
 import SocialList from './SocialList.vue'
 import NavHeader from './NavHeader.vue'
 
@@ -36,7 +34,6 @@ export default {
     components: {
         CategoryList,
         PostList,
-        LoadingBar,
         SocialList,
         NavHeader
     },
@@ -56,6 +53,7 @@ export default {
     },
 
     mounted() {
+        this.$loading.show()
         this.onResize()
         this.$store.dispatch('getCategoryList')
     },
