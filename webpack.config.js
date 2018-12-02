@@ -87,7 +87,7 @@ module.exports = (env, argv) => {
                 '@assets': path.resolve(__dirname, './src/assets'),
                 '@@config': path.resolve(__dirname, './src/config/config.js'),
                 '@@env': path.resolve(__dirname, './src/config/env.js')
-            }
+            },
         }
     }
 

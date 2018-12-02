@@ -31,8 +31,7 @@ export default {
     position: absolute;
     bottom: 0px;
     width: 165px;
-    // border-top: 1px solid $sub-color;
-
+    
     a {
         color: hsla(0,0%,100%,.7);
         i {
