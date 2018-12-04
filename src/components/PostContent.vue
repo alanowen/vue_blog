@@ -31,11 +31,8 @@ export default {
     },
 
     beforeRouteUpdate(to, from, next) {
-        this.$loading.start()
-        this.$store.dispatch('getPost', to.params.id).finally(() => {
-            this.$loading.finish()
-        })
         next()
+        this.$store.dispatch('getPost', {postId: to.params.id, vm: this})
     },
 
     beforeRouteLeave(to, from, next) {

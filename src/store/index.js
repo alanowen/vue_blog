@@ -58,7 +58,8 @@ export default new Vuex.Store({
             return promise
         },
 
-        getPost({ state }, postId) {
+        getPost({ state }, { postId, vm }) {
+            vm.$loading.start()
             state.post = null
             let promise = new Promise((resolve, reject) => {
                 util.ajax.get('/api/post/' + postId).then(response => {
@@ -67,6 +68,8 @@ export default new Vuex.Store({
                     resolve(data)
                 }).catch(error => {
                     reject(error)
+                }).finally(() => {
+                    vm.$loading.finish()
                 })
             })
             return promise
