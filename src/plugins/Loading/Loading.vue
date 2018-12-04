@@ -1,5 +1,7 @@
 <template>
-    <div class="loading" :style="styles" v-show="show"></div>
+    <transition name="fade">
+        <div class="loading" :style="styles" v-show="show"></div>
+    </transition>
 </template>
 
 <script>
@@ -12,21 +14,30 @@ export default {
         show: {
             type: Boolean,
             default: false
+        },
+
+        percent: {
+            type: Number,
+            default: 0
+        }
+    },
+
+    data() {
+        return {
         }
     },
 
     computed: {
         styles() {
             return {
-                height: this.height
-
+                height: this.height,
+                width: `${this.percent}%`
             }
         }
     },
 
     data() {
         return {
-
         }
     },
 
@@ -34,21 +45,30 @@ export default {
 
     },
 
-    created() {
+    methods: {
+        
+    },
 
+    created() {
     }
 }
 </script>
 
 
 <style lang="stylus" scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 .loading {
-    width: 100%
     position: fixed;
     top: 0;
     left: 0;
-    right: 0;
     z-index: 100;
-    background-color: #2d8cf0;    
+    background-color: #ff3366;
+    transition: width .2s linear;
 }
 </style>

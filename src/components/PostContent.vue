@@ -1,6 +1,10 @@
 <template>
-    <div class="post" v-html="post.body_html" v-highlight>
-    </div>
+    <transition name="fade">
+        <div v-if="post">
+            <div class="post" v-html="post.body_html" v-highlight>
+            </div>
+        </div>
+    </transition>
 </template>
 
 
@@ -27,10 +31,11 @@ export default {
     },
 
     beforeRouteUpdate(to, from, next) {
-        this.$store.dispatch('getPost', to.params.id)
-        setTimeout(() => {
-            next()
-        }, 200)
+        this.$loading.start()
+        this.$store.dispatch('getPost', to.params.id).finally(() => {
+            this.$loading.finish()
+        })
+        next()
     },
 
     beforeRouteLeave(to, from, next) {
@@ -41,6 +46,14 @@ export default {
 
 
 <style lang="stylus" scoped>
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
 .post {
     line-height: 1.5;
 }

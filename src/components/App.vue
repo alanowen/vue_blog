@@ -53,7 +53,6 @@ export default {
     },
 
     mounted() {
-        this.$loading.show()
         this.onResize()
         this.$store.dispatch('getCategoryList')
     },

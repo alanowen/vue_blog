@@ -30,10 +30,14 @@ export default new Vuex.Store({
     actions: {
         getPostList({ state }, categoryId) {
             let promise = new Promise((resolve, reject) => {
+                state.posts = []
                 util.ajax.get('/api/post/list?category_id=' + categoryId).then(response => {
                     let data = response.data
-                    state.posts = data
-                    resolve(data)
+                    setTimeout(() => {
+                        state.posts = data
+                        resolve(data)                        
+                    }, 200);
+
                 }).catch(error => {
                     reject(error)
                 })
@@ -55,6 +59,7 @@ export default new Vuex.Store({
         },
 
         getPost({ state }, postId) {
+            state.post = null
             let promise = new Promise((resolve, reject) => {
                 util.ajax.get('/api/post/' + postId).then(response => {
                     let data = response.data

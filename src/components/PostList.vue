@@ -1,12 +1,14 @@
 <template>
-<ul>
-    <li v-for="(post, index) in posts" v-bind:class="{ active: activePost == post.title }" v-bind:key="index" v-on:click="selectPost(post)">
-        <a class="" href="javascript:void(0)">
-            <span class="post-title">{{ post.title }}</span>
-            <span class="post-date">Fri 2017</span>
-        </a>
-    </li>
-</ul>
+    <transition name="fade">
+        <ul v-show="posts.length != 0">
+            <li v-for="(post, index) in posts" v-bind:class="{ active: activePost == post.title }" v-bind:key="index" v-on:click="selectPost(post)">
+                <a class="" href="javascript:void(0)">
+                    <span class="post-title">{{ post.title }}</span>
+                    <span class="post-date">Fri 2017</span>
+                </a>
+            </li>
+        </ul>
+    </transition>
 </template>
 
 <script>
@@ -60,6 +62,23 @@ ul {
             float: right;
         }
     }
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
+}
+
+.loading {
+    width: 100%
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: #ff3366;    
 }
 </style>
 
