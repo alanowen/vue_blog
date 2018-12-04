@@ -1,4 +1,4 @@
-import 'highlightjs/styles/atom-one-dark.css';
+import 'highlightjs/styles/tomorrow.css';
 import Hljs from 'highlightjs/highlight.pack.min.js';
 
 let Highlight = {}
